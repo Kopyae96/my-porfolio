@@ -1,0 +1,6 @@
+node_modules/
+.next/
+.env*
+!.env.example
+Pyae_Thi_La_CV.pages
+public/pyae-thi-la-clean.png
