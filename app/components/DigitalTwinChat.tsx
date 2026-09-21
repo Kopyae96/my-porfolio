@@ -41,12 +41,12 @@ export default function DigitalTwinChat() {
   function submit(event: FormEvent<HTMLFormElement>) { event.preventDefault(); void ask(input); }
 
   return <div className="twin-wrap">
-    {open && <section className="twin-panel" aria-label="Pyae Thi La Digital Twin chat">
+    {open && <section id="digital-twin-chat" className="twin-panel" aria-label="Pyae Thi La Digital Twin chat">
       <header className="twin-header"><div><p className="eyebrow">Digital Twin</p><h2>Career concierge</h2></div><button type="button" className="twin-close" onClick={() => setOpen(false)} aria-label="Close chat">×</button></header>
       <div className="twin-messages" aria-live="polite">{messages.map((message, index) => <p className={`twin-message twin-message--${message.role}`} key={`${message.role}-${index}`}>{message.content}</p>)}{status === "loading" && <p className="twin-thinking">Thinking…</p>}</div>
       {messages.length === 1 && <div className="twin-starters">{starters.map((starter) => <button type="button" key={starter} onClick={() => void ask(starter)}>{starter}</button>)}</div>}
       <form className="twin-form" onSubmit={submit}><label className="sr-only" htmlFor="twin-question">Ask about Pyae’s career</label><input id="twin-question" value={input} onChange={(event) => setInput(event.target.value)} placeholder="Ask about Pyae’s career…" maxLength={1000} disabled={status === "loading"} /><button type="submit" disabled={!input.trim() || status === "loading"}>Send ↗</button></form>
     </section>}
-    <button type="button" className="twin-trigger" onClick={() => setOpen((current) => !current)} aria-expanded={open} aria-controls="digital-twin-chat"><span>✦</span> Ask the Digital Twin</button>
+    <button type="button" className="twin-trigger" onClick={() => setOpen((current) => !current)} aria-expanded={open} aria-controls="digital-twin-chat"><span className="twin-spark" aria-hidden="true">✦</span><span>Ask the Digital Twin</span><i className="twin-signal" aria-hidden="true" /></button>
   </div>;
 }
